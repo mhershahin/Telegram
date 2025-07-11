@@ -5276,7 +5276,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
                 if (userId != getUserConfig().getClientUserId()) {
                     boolean muted = getMessagesController().isDialogMuted(userId, topicId);
-                    profileButtonsContainer.addButton(mute_unmute,muted?R.drawable.profile_unmute:R.drawable.profile_mute,muted?LocaleController.getString(R.string.Mute):LocaleController.getString(R.string.Unmute));
+                    profileButtonsContainer.addButton(mute_unmute,muted?R.drawable.profile_unmute:R.drawable.profile_mute,muted?LocaleController.getString(R.string.Unmute):LocaleController.getString(R.string.Mute));
                 }
                 if (userInfo != null && userInfo.phone_calls_available) {
                     profileButtonsContainer.addButton(call_item, R.drawable.profile_call, LocaleController.getString(R.string.Call));
