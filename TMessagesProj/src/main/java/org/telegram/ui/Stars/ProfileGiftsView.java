@@ -322,7 +322,7 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
 
     @Override
     protected void dispatchDraw(@NonNull Canvas canvas) {
-        if (gifts.isEmpty() || expandProgress >= 1.0f) return;
+        if (gifts.isEmpty() || expandProgress >= 1.0f || avatarContainer.getScaleX()<1f || avatarContainer.getScaleY()<1f || avatarContainer.getVisibility()==View.GONE) return;
 
         final float ax = avatarContainer.getX();
         final float ay = avatarContainer.getY();

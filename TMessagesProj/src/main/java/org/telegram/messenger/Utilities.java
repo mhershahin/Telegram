@@ -122,7 +122,26 @@ public class Utilities {
         Utilities.stackBlurBitmap(scaledBitmap, Math.max(10, Math.max(w, h) / 150));
         return scaledBitmap;
     }
+    public static Bitmap stackBlurBitmapMax(Bitmap bitmap, int targetWidth, int targetHeight, boolean round) {
+        Bitmap scaledBitmap = Bitmap.createBitmap(targetWidth, targetHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(scaledBitmap);
 
+        float scaleX = (float) targetWidth / bitmap.getWidth();
+        float scaleY = (float) targetHeight / bitmap.getHeight();
+        canvas.save();
+        canvas.scale(scaleX, scaleY);
+        if (round) {
+            Path path = new Path();
+            path.addCircle(bitmap.getWidth() / 2f, bitmap.getHeight() / 2f,
+                    Math.min(bitmap.getWidth(), bitmap.getHeight()) / 2f - 1, Path.Direction.CW);
+            canvas.clipPath(path);
+        }
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        canvas.restore();
+
+        Utilities.stackBlurBitmap(scaledBitmap, Math.max(10, Math.max(targetWidth, targetHeight) / 150));
+        return scaledBitmap;
+    }
     public static Bitmap blurWallpaper(Bitmap src) {
         if (src == null) {
             return null;
